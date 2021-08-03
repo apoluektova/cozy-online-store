@@ -1,0 +1,20 @@
+.site-list {
+  @include reset-list;
+  width: 34.5%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.site-list__item {
+  width: auto;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 600;
+  margin-right: 41px;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}

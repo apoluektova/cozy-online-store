@@ -1,0 +1,19 @@
+.user-list {
+  @include reset-list;
+  width: auto;
+  display: flex;
+  margin-left: auto;
+}
+
+.user-list__item {
+  margin-right: 40px;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.user-list__icon {
+  width: 24px;
+  height: 24px;
+}
