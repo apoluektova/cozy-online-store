@@ -6,9 +6,15 @@ const Header = () => {
       <img className="header__logo" src="img/svg/logo.svg" width="71" height="39" alt="Cozy shop logo" />
       <nav className="header__navigation navigation">
         <ul className="navigation__list site-list">
-          <li className="site-list__item">Shop</li>
-          <li className="site-list__item">About us</li>
-          <li className="site-list__item">Contacts</li>
+          <li className="site-list__item">
+            <a className="site-list__link" href="">Shop</a>
+          </li>
+          <li className="site-list__item">
+            <a className="site-list__link" href="">About us</a>
+          </li>
+          <li className="site-list__item">
+            <a className="site-list__link" href="">Contacts</a>
+          </li>
         </ul>
       </nav>
       <ul className="user-list">

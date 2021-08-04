@@ -1,0 +1,24 @@
+.sorting {
+  display: flex;
+  width: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.sorting__text {
+  margin-right: 30px;
+}
+
+.sorting__list {
+  @include reset-list;
+  display: flex;
+}
+
+.sorting__item {
+  font-weight: 700;
+  margin-right: 20px;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
