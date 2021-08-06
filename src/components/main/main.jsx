@@ -4,7 +4,8 @@ import Filter from "../filter/filter.jsx";
 import Sorting from "../sorting/sorting.jsx";
 import Catalog from "../catalog/catalog.jsx";
 
-const Main = () => {
+const Main = (props) => {
+  const {products} = props;
   return (
     <React.Fragment>
       <Header />
@@ -12,7 +13,9 @@ const Main = () => {
       <Filter />
       <div className="page-content__wrapper">
         <Sorting />
-        <Catalog />
+        <Catalog
+          products={products}
+        />
       </div>
       </main>
     </React.Fragment>

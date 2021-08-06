@@ -21,6 +21,7 @@
     "file-loader": "6.1.1",
     "mini-css-extract-plugin": "1.0.0",
     "node-sass": "4.14.1",
+    "redux-devtools-extension": "2.13.9",
     "sass-loader": "10.0.3",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11",
@@ -30,7 +31,11 @@
     "node": "10"
   },
   "dependencies": {
+    "axios": "0.21.1",
     "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "react-dom": "16.14.0",
+    "react-redux": "7.2.4",
+    "redux": "4.1.1",
+    "redux-thunk": "2.3.0"
   }
 }
