@@ -2,7 +2,7 @@ import {extend} from "../../utils.js";
 
 const initialState = {
   products: [],
-  product: null,
+  product: {},
 };
 
 const ActionType = {
@@ -42,8 +42,6 @@ const Operation = {
   loadSomeProducts: (number) => (dispatch, getState, api) => {
     return api.get(`/products?limit=${number}`)
     .then((response) => {
-      console.log("blablabla");
-      debugger;
       dispatch(ActionCreator.loadSomeProducts(response.data));
     });
   },
@@ -56,8 +54,6 @@ const Operation = {
 };
 
 const reducer = (state = initialState, action) => {
-  console.log('reducer');
-  debugger;
   switch (action.type) {
     case ActionType.LOAD_ALL_PRODUCTS:
       return {
