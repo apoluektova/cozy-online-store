@@ -27,9 +27,17 @@
 .filter__item {
   margin-bottom: 10px;
 
+  &:hover {
+    font-weight: 700;
+  }
+
   &:last-of-type {
     margin-bottom: 0;
   }
+}
+
+.filter__link {
+  color: inherit;
 }
 
 .filter__radio {

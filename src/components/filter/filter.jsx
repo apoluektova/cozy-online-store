@@ -1,7 +1,8 @@
 import React from "react";
 
 const Filter = (props) => {
-  const {categories} = props;
+  const {categories, onCategoryClick} = props;
+  const priceRanges = ['$0 - $50', '$50 - $100', '$100 - $150', '$150 and more'];
 
   return (
     <section className="filter">
@@ -11,36 +12,32 @@ const Filter = (props) => {
         {categories.map((category) => {
           const capitalizedCategory = category[0].toUpperCase() + category.slice(1);
           return (
-            <li className="filter__item">{capitalizedCategory}</li>
+            <li className="filter__item">
+              <a
+                href="#"
+                className="filter__link"
+                onClick={(evt) => {
+                  evt.preventDefault();
+                  onCategoryClick(category);
+                }}>
+                {capitalizedCategory}
+              </a>
+            </li>
           );
         })}
       </ul>
       <h3 className="filter__type">Price range</h3>
       <ul className="filter__list">
-        <li className="filter__item">
-          <label className="filter__label">
-            <input className="filter__radio" type="radio" name="radio" />
-            0 - $25
-          </label>
-        </li>
-        <li className="filter__item">
-          <label className="filter__label">
-            <input className="filter__radio" type="radio" name="radio" />
-            $25 - $50
-          </label>
-        </li>
-        <li className="filter__item">
-          <label className="filter__label">
-            <input className="filter__radio" type="radio" name="radio" />
-            $50 - $75
-          </label>
-        </li>
-        <li className="filter__item">
-          <label className="filter__label">
-            <input className="filter__radio" type="radio" name="radio" />
-            $75 - $100
-          </label>
-        </li>
+        {priceRanges.map((range) => {
+          return (
+            <li className="filter__item">
+              <label className="filter__label">
+                <input className="filter__radio" type="radio" name="radio" />
+                  {range}
+              </label>
+            </li>
+          );
+        })}
       </ul>
     </section>
   );

@@ -1,5 +1,3 @@
-import {extend} from "../../utils.js";
-
 const initialState = {
   products: [],
   product: {},
@@ -10,7 +8,8 @@ const ActionType = {
   LOAD_ALL_PRODUCTS: `LOAD_ALL_PRODUCTS`,
   LOAD_SOME_PRODUCTS: `LOAD_SOME_PRODUCTS`,
   LOAD_PRODUCT: `LOAD_PRODUCT`,
-  LOAD_CATEGORIES: `LOAD_CATEGORIES`
+  LOAD_CATEGORIES: `LOAD_CATEGORIES`,
+  LOAD_PRODUCTS_BY_CATEGORY: `LOAD_PRODUCTS_BY_CATEGORY`,
 };
 
 const ActionCreator = {
@@ -36,8 +35,14 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_CATEGORIES,
       payload: categories
-    }
-  }
+    };
+  },
+  loadProductsByCategory: (products) => {
+    return {
+      type: ActionType.LOAD_PRODUCTS_BY_CATEGORY,
+      payload: products
+    };
+  },
 };
 
 const Operation = {
@@ -64,6 +69,12 @@ const Operation = {
     .then((response) => {
       dispatch(ActionCreator.loadCategories(response.data));
     });
+  },
+  loadProductsByCategory: (category) => (dispatch, getState, api) => {
+    return api.get(`/products/category/${category}`)
+    .then((response) => {
+      dispatch(ActionCreator.loadProductsByCategory(response.data));
+    });
   }
 };
 
@@ -89,6 +100,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         categories: action.payload,
       }
+     case ActionType.LOAD_PRODUCTS_BY_CATEGORY:
+       return {
+         ...state,
+         products: action.payload,
+       }
   }
 
   return state;

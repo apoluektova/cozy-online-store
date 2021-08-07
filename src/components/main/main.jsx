@@ -5,13 +5,14 @@ import Sorting from "../sorting/sorting.jsx";
 import Catalog from "../catalog/catalog.jsx";
 
 const Main = (props) => {
-  const {products, categories} = props;
+  const {products, categories, onCategoryClick} = props;
   return (
     <React.Fragment>
       <Header />
       <main className="page-content">
       <Filter
         categories={categories}
+        onCategoryClick={onCategoryClick}
       />
       <div className="page-content__wrapper">
         <Sorting />
