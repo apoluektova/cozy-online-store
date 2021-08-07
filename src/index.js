@@ -22,6 +22,7 @@ const store = createStore(
 );
 
 store.dispatch(DataOperation.loadSomeProducts(SHOWN_PRODUCT_CARDS));
+store.dispatch(DataOperation.loadCategories());
 
 ReactDOM.render(
   <Provider store={store}>

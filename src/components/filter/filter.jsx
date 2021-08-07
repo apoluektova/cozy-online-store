@@ -1,15 +1,19 @@
 import React from "react";
 
-const Filter = () => {
+const Filter = (props) => {
+  const {categories} = props;
+
   return (
     <section className="filter">
       <h2 className="filter__heading">Filter</h2>
       <h3 className="filter__type">Categories</h3>
       <ul className="filter__list">
-        <li className="filter__item">Electronics</li>
-        <li className="filter__item">Jewelery</li>
-        <li className="filter__item">Men Clothing</li>
-        <li className="filter__item">Women Clothing</li>
+        {categories.map((category) => {
+          const capitalizedCategory = category[0].toUpperCase() + category.slice(1);
+          return (
+            <li className="filter__item">{capitalizedCategory}</li>
+          );
+        })}
       </ul>
       <h3 className="filter__type">Price range</h3>
       <ul className="filter__list">

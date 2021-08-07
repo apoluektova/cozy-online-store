@@ -3,12 +3,14 @@ import {extend} from "../../utils.js";
 const initialState = {
   products: [],
   product: {},
+  categories: [],
 };
 
 const ActionType = {
   LOAD_ALL_PRODUCTS: `LOAD_ALL_PRODUCTS`,
   LOAD_SOME_PRODUCTS: `LOAD_SOME_PRODUCTS`,
-  LOAD_PRODUCT: `LOAD_PRODUCT`
+  LOAD_PRODUCT: `LOAD_PRODUCT`,
+  LOAD_CATEGORIES: `LOAD_CATEGORIES`
 };
 
 const ActionCreator = {
@@ -30,6 +32,12 @@ const ActionCreator = {
       payload: product
     };
   },
+  loadCategories: (categories) => {
+    return {
+      type: ActionType.LOAD_CATEGORIES,
+      payload: categories
+    }
+  }
 };
 
 const Operation = {
@@ -50,6 +58,12 @@ const Operation = {
     .then((response) => {
       dispatch(ActionCreator.loadProduct(response.data));
     });
+  },
+  loadCategories: () => (dispatch, getState, api) => {
+    return api.get(`/products/categories`)
+    .then((response) => {
+      dispatch(ActionCreator.loadCategories(response.data));
+    });
   }
 };
 
@@ -66,9 +80,14 @@ const reducer = (state = initialState, action) => {
         products: action.payload
       }
     case ActionType.LOAD_PRODUCT:
-      return{
+      return {
         ...state,
         product: action.payload
+      }
+    case ActionType.LOAD_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload,
       }
   }
 

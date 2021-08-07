@@ -1,5 +1,6 @@
 .product {
   width: calc((100% - 60px)/3);
+  //max-height: 620px;
   border: 1px solid rgba($dark, 0.2);
   padding: 32px;
   margin-right: 30px;
@@ -12,8 +13,9 @@
 
 .product__image {
   width: calc(100% - 64px);
-  height: auto;
+  height: 205px;
   margin-bottom: 32px;
+  object-fit: contain;
 }
 
 .product__title {

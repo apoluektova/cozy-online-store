@@ -7,7 +7,7 @@ const Product = (props) => {
     <article className="product">
       <img className="product__image" src={image} width="100%" height="auto" alt={title} />
       <h3 className="product__title">{title}</h3>
-      <p className="product__price">{price}</p>
+      <p className="product__price">${price}</p>
       <p className="product__description">{description}</p>
       <div className="product__wrapper">
         <button className="product__button" type="button">
