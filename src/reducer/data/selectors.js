@@ -1,6 +1,7 @@
 import NameSpace from "../name-space.js";
-import {selectPriceRange} from "../app/selectors.js";
+import {selectPriceRange, selectSortingType} from "../app/selectors.js";
 import {createSelector} from "reselect";
+import {SORTING_TYPES} from "../../const.js";
 
 export const selectProducts = (state) => {
   return state[NameSpace.DATA].products;
@@ -19,6 +20,25 @@ export const selectProductsByPrice = createSelector(
     } else {
       return products.filter((product) => {
          return product.price >= priceRange.minPrice && product.price < priceRange.maxPrice;
+      });
+    }
+  }
+);
+
+export const selectProductsBySortingType = createSelector(
+  selectProductsByPrice,
+  selectSortingType,
+  (products, sortingType) => {
+    debugger;
+    if (sortingType === null) {
+      return products;
+    } else if (sortingType === SORTING_TYPES.PRICE_LOW_HIGH) {
+      return products.slice().sort((a, b) => {
+        return a.price - b.price;
+      });
+    } else if (sortingType === SORTING_TYPES.PRICE_HIGH_LOW) {
+      return products.slice().sort((a, b) => {
+        return b.price - a.price;
       });
     }
   }

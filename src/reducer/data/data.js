@@ -75,7 +75,7 @@ const Operation = {
     .then((response) => {
       dispatch(ActionCreator.loadProductsByCategory(response.data));
     });
-  }
+  },
 };
 
 const reducer = (state = initialState, action) => {

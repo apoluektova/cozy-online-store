@@ -15,10 +15,18 @@
 }
 
 .sorting__item {
-  font-weight: 700;
+  font-weight: 600;
   margin-right: 20px;
+
+  &:hover {
+    font-weight: 700;
+  }
 
   &:last-of-type {
     margin-right: 0;
+  }
+
+  .sorting__button {
+    @include reset-button;
   }
 }

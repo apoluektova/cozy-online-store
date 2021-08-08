@@ -1,11 +1,13 @@
 const initialState = {
   category: null,
   priceRange: {},
+  sortingType: null,
 };
 
 const ActionType = {
   CHANGE_CATEGORY: `CHANGE_CATEGORY`,
-  CHANGE_PRICE_RANGE: `CHANGE_PRICE_RANGE`
+  CHANGE_PRICE_RANGE: `CHANGE_PRICE_RANGE`,
+  CHANGE_SORTING_TYPE: `CHANGE_SORTING_TYPE`,
 }
 
 const ActionCreator = {
@@ -19,6 +21,12 @@ const ActionCreator = {
     return {
       type: ActionType.CHANGE_PRICE_RANGE,
       payload: priceRange
+    }
+  },
+  changeSortingType: (sortingType) => {
+    return {
+      type: ActionType.CHANGE_SORTING_TYPE,
+      payload: sortingType
     }
   }
 };
@@ -34,6 +42,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         priceRange: action.payload
+      }
+    case (ActionType.CHANGE_SORTING_TYPE):
+      return {
+        ...state,
+        sortingType: action.payload
       }
   }
 
