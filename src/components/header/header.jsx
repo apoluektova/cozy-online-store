@@ -1,4 +1,6 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import {APP_ROUTE} from "../../const.js";
 
 const Header = () => {
   return (
@@ -25,8 +27,10 @@ const Header = () => {
             <img className="user-list__icon" src="img/svg/user.svg" width="24" height="24" alt="Login" />
           </li>
           <li className="user-list__item">
-            <img className="user-list__icon" src="img/svg/cart.svg" width="24" height="24" alt="Cart" />
-            <span className="user-list__number visually-hidden">1</span>
+            <Link to={APP_ROUTE.CART} className="user-list__link">
+              <img className="user-list__icon" src="img/svg/cart.svg" width="24" height="24" alt="Cart" />
+              <span className="user-list__number visually-hidden">1</span>
+            </Link>
           </li>
         </ul>
     </header>

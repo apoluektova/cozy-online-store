@@ -4,18 +4,43 @@ import {connect} from "react-redux";
 import {selectCategories, selectProductsByPrice, selectProductsBySortingType} from "../../reducer/data/selectors.js";
 import {ActionCreator} from "../../reducer/app/app.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
+import {Redirect, Router, Route, Switch} from "react-router-dom";
+import history from "../../history.js";
+import {APP_ROUTE} from "../../const.js";
+import Cart from "../cart/cart.jsx";
 
 const App = (props) => {
   const {products, categories, onCategoryClick, onPriceRangeClick, onSortingButtonClick} = props;
 
   return (
-    <Main
-      products={products}
-      categories={categories}
-      onCategoryClick={onCategoryClick}
-      onPriceRangeClick={onPriceRangeClick}
-      onSortingButtonClick={onSortingButtonClick}
-    />
+    <Router history={history}>
+      <Switch>
+        <Route
+          exact
+          path={APP_ROUTE.MAIN}
+          render={() => {
+            return (
+              <Main
+                products={products}
+                categories={categories}
+                onCategoryClick={onCategoryClick}
+                onPriceRangeClick={onPriceRangeClick}
+                onSortingButtonClick={onSortingButtonClick}
+              />
+            );
+          }}
+        />
+        <Route
+          exact
+          path={APP_ROUTE.CART}
+          render={() => {
+            return (
+              <Cart />
+            );
+          }}
+        />
+      </Switch>
+    </Router>
   );
 };
 

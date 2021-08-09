@@ -4,3 +4,9 @@ export const SORTING_TYPES = {
   NAME_A_Z: `Name A to Z`,
   NAME_Z_A: `Name Z to A`,
 };
+
+export const APP_ROUTE = {
+  MAIN: `/`,
+  CART: `/cart`,
+  ORDER: `/order`
+}
