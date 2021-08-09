@@ -2,7 +2,7 @@ import React from "react";
 
 const Sorting = (props) => {
   const {onSortingButtonClick} = props;
-  const sortingTypes = ['Price Low to High', 'Price High to Low'];
+  const sortingTypes = ['Price Low to High', 'Price High to Low', 'Name A to Z', 'Name Z to A'];
 
   return (
     <section className="sorting">
