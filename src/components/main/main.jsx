@@ -5,7 +5,15 @@ import Sorting from "../sorting/sorting.jsx";
 import Catalog from "../catalog/catalog.jsx";
 
 const Main = (props) => {
-  const {products, categories, onCategoryClick, onPriceRangeClick, onSortingButtonClick, onCartButtonClick} = props;
+  const {
+    products,
+    categories,
+    onCategoryClick,
+    onPriceRangeClick,
+    onSortingButtonClick,
+    onCartButtonClick
+  } = props;
+
   return (
     <React.Fragment>
       <Header />

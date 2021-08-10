@@ -9,7 +9,8 @@ const ActionType = {
   CHANGE_CATEGORY: `CHANGE_CATEGORY`,
   CHANGE_PRICE_RANGE: `CHANGE_PRICE_RANGE`,
   CHANGE_SORTING_TYPE: `CHANGE_SORTING_TYPE`,
-  ADD_PRODUCT_TO_CART: `ADD_PRODUCT_TO_CART`
+  ADD_TO_CART: `ADD_TO_CART`,
+  REMOVE_FROM_CART: `REMOVE_FROM_CART`
 }
 
 const ActionCreator = {
@@ -31,9 +32,15 @@ const ActionCreator = {
       payload: sortingType
     }
   },
-  addProductToCart: (product) => {
+  addToCart: (product) => {
     return {
-      type: ActionType.ADD_PRODUCT_TO_CART,
+      type: ActionType.ADD_TO_CART,
+      payload: product
+    }
+  },
+  removeFromCart: (product) => {
+    return {
+      type: ActionType.REMOVE_FROM_CART,
       payload: product
     }
   }
@@ -57,10 +64,15 @@ const reducer = (state = initialState, action) => {
         ...state,
         sortingType: action.payload
       }
-    case (ActionType.ADD_PRODUCT_TO_CART):
+    case (ActionType.ADD_TO_CART):
       return {
         ...state,
         productsInCart: state.productsInCart.concat(action.payload)
+      }
+    case (ActionType.REMOVE_FROM_CART):
+      return {
+        ...state,
+        productsInCart: state.productsInCart.slice().filter((product) => product.id !== action.payload.id)
       }
   }
 
