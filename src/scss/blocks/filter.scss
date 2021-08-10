@@ -5,10 +5,7 @@
 }
 
 .filter__heading {
-  font-size: 22px;
-  line-height: 22px;
-  font-weight: 700;
-  margin: 0;
+  @include page-title;
   margin-bottom: 30px;
 }
 

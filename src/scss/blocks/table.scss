@@ -1,0 +1,18 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 1px solid rgba($dark, 0.2);
+  margin-bottom: 32px;
+}
+
+.table__row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.table__info {
+  &--shipping {
+    color: $green;
+  }
+}

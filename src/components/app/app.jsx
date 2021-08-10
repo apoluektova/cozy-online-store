@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {selectCategories, selectProductsByPrice, selectProductsBySortingType} from "../../reducer/data/selectors.js";
 import {ActionCreator} from "../../reducer/app/app.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
-import {Redirect, Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import history from "../../history.js";
 import {APP_ROUTE} from "../../const.js";
 import Cart from "../cart/cart.jsx";
@@ -13,7 +13,7 @@ const App = (props) => {
   const {products, categories, onCategoryClick, onPriceRangeClick, onSortingButtonClick} = props;
 
   return (
-    <Router history={history}>
+    <Router>
       <Switch>
         <Route
           exact
