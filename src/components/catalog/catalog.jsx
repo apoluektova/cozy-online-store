@@ -2,7 +2,7 @@ import React from "react";
 import Product from "../product/product.jsx";
 
 const Catalog = (props) => {
-  const {products} = props;
+  const {products, onCartButtonClick} = props;
 
   return (
     <section className="catalog">
@@ -12,10 +12,8 @@ const Catalog = (props) => {
           return (
             <Product
               key={product.id}
-              image={product.image}
-              title={product.title}
-              price={product.price}
-              description={product.description}
+              product={product}
+              onCartButtonClick={onCartButtonClick}
             />
           );
         })}

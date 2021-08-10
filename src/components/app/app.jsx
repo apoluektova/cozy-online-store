@@ -10,7 +10,7 @@ import {APP_ROUTE} from "../../const.js";
 import Cart from "../cart/cart.jsx";
 
 const App = (props) => {
-  const {products, categories, onCategoryClick, onPriceRangeClick, onSortingButtonClick} = props;
+  const {products, categories, onCategoryClick, onPriceRangeClick, onSortingButtonClick, onCartButtonClick} = props;
 
   return (
     <Router>
@@ -26,6 +26,7 @@ const App = (props) => {
                 onCategoryClick={onCategoryClick}
                 onPriceRangeClick={onPriceRangeClick}
                 onSortingButtonClick={onSortingButtonClick}
+                onCartButtonClick={onCartButtonClick}
               />
             );
           }}
@@ -59,6 +60,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onSortingButtonClick(sortingType) {
     dispatch(ActionCreator.changeSortingType(sortingType));
+  },
+  onCartButtonClick(product) {
+    dispatch(ActionCreator.addProductToCart(product));
   }
 });
 

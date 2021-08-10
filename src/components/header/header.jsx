@@ -5,7 +5,9 @@ import {APP_ROUTE} from "../../const.js";
 const Header = () => {
   return (
     <header className="header">
-      <img className="header__logo" src="img/svg/logo.svg" width="71" height="39" alt="Cozy shop logo" />
+      <Link to={APP_ROUTE.MAIN}>
+        <img className="header__logo" src="img/svg/logo.svg" width="71" height="39" alt="Cozy shop logo" />
+      </Link>
       <nav className="header__navigation navigation">
         <ul className="navigation__list site-list">
           <li className="site-list__item">

@@ -7,3 +7,7 @@ export const selectPriceRange = (state) => {
 export const selectSortingType = (state) => {
   return state[NameSpace.APP].sortingType;
 };
+
+export const selectProductsInCart = (state) => {
+  return state[NameSpace.APP].productsInCart;
+}
