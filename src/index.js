@@ -15,18 +15,18 @@ const SHOWN_PRODUCT_CARDS = 12;
 const api = createAPI();
 
 const store = createStore(
-  reducer,
-  composeWithDevTools(
-    applyMiddleware(thunk.withExtraArgument(api))
-  )
+    reducer,
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
 store.dispatch(DataOperation.loadSomeProducts(SHOWN_PRODUCT_CARDS));
 store.dispatch(DataOperation.loadCategories());
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App/>
-  </Provider>,
-  document.querySelector('#root')
+    <Provider store={store}>
+      <App/>
+    </Provider>,
+    document.querySelector(`#root`)
 );

@@ -1,11 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import {connect} from "react-redux";
-import {selectCategories, selectProductsByPrice, selectProductsBySortingType} from "../../reducer/data/selectors.js";
+import {selectCategories, selectProductsBySortingType} from "../../reducer/data/selectors.js";
 import {ActionCreator} from "../../reducer/app/app.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import history from "../../history.js";
 import {APP_ROUTE} from "../../const.js";
 import Cart from "../cart/cart.jsx";
 
@@ -72,6 +72,15 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.addToCart(product));
   },
 });
+
+App.propTypes = {
+  products: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
+  onCategoryClick: PropTypes.func.isRequired,
+  onPriceRangeClick: PropTypes.func.isRequired,
+  onSortingButtonClick: PropTypes.func.isRequired,
+  onCartButtonClick: PropTypes.func.isRequired
+};
 
 export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);

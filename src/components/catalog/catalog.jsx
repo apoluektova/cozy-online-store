@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Product from "../product/product.jsx";
 
 const Catalog = (props) => {
@@ -20,6 +21,11 @@ const Catalog = (props) => {
       </div>
     </section>
   );
+};
+
+Catalog.propTypes = {
+  products: PropTypes.array.isRequired,
+  onCartButtonClick: PropTypes.func.isRequired,
 };
 
 export default Catalog;

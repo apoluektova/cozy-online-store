@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Header from "../header/header.jsx";
 import Filter from "../filter/filter.jsx";
 import Sorting from "../sorting/sorting.jsx";
@@ -18,23 +19,32 @@ const Main = (props) => {
     <React.Fragment>
       <Header />
       <main className="page-content">
-      <Filter
-        categories={categories}
-        onCategoryClick={onCategoryClick}
-        onPriceRangeClick={onPriceRangeClick}
-      />
-      <div className="page-content__wrapper">
-        <Sorting
-          onSortingButtonClick={onSortingButtonClick}
+        <Filter
+          categories={categories}
+          onCategoryClick={onCategoryClick}
+          onPriceRangeClick={onPriceRangeClick}
         />
-        <Catalog
-          products={products}
-          onCartButtonClick={onCartButtonClick}
-        />
-      </div>
+        <div className="page-content__wrapper">
+          <Sorting
+            onSortingButtonClick={onSortingButtonClick}
+          />
+          <Catalog
+            products={products}
+            onCartButtonClick={onCartButtonClick}
+          />
+        </div>
       </main>
     </React.Fragment>
   );
+};
+
+Main.propTypes = {
+  products: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
+  onCategoryClick: PropTypes.func.isRequired,
+  onPriceRangeClick: PropTypes.func.isRequired,
+  onSortingButtonClick: PropTypes.func.isRequired,
+  onCartButtonClick: PropTypes.func.isRequired
 };
 
 export default Main;

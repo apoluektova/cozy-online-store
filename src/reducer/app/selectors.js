@@ -10,4 +10,4 @@ export const selectSortingType = (state) => {
 
 export const selectProductsInCart = (state) => {
   return state[NameSpace.APP].productsInCart;
-}
+};

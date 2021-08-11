@@ -1,16 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Filter = (props) => {
   const {categories, onCategoryClick, onPriceRangeClick} = props;
   const priceRanges = [
     {minPrice: 0,
-    maxPrice: 50},
+      maxPrice: 50},
     {minPrice: 50,
-    maxPrice: 100},
+      maxPrice: 100},
     {minPrice: 100,
-    maxPrice: 150},
+      maxPrice: 150},
     {minPrice: 150,
-    maxPrice: 10000},
+      maxPrice: 10000},
   ];
 
   return (
@@ -18,11 +19,11 @@ const Filter = (props) => {
       <h2 className="filter__heading">Filter</h2>
       <h3 className="filter__type">Categories</h3>
       <ul className="filter__list">
-        {categories.map((category) => {
+        {categories.map((category, index) => {
           const capitalizedCategory = category[0].toUpperCase() + category.slice(1);
 
           return (
-            <li className="filter__item">
+            <li className="filter__item" key={`${category}-${index}`}>
               <a
                 href="#"
                 className="filter__link"
@@ -38,18 +39,19 @@ const Filter = (props) => {
       </ul>
       <h3 className="filter__type">Price range</h3>
       <ul className="filter__list">
-        {priceRanges.map((range) => {
+        {priceRanges.map((range, index) => {
           const rangeString = `$${range.minPrice} - $${range.maxPrice}`;
 
           return (
             <li
+              key={`${range}-${index}`}
               className="filter__item"
               onClick={() => {
                 onPriceRangeClick(range);
               }}>
               <label className="filter__label">
                 <input className="filter__radio" type="radio" name="radio" />
-                  {rangeString}
+                {rangeString}
               </label>
             </li>
           );
@@ -57,6 +59,12 @@ const Filter = (props) => {
       </ul>
     </section>
   );
+};
+
+Filter.propTypes = {
+  categories: PropTypes.array.isRequired,
+  onCategoryClick: PropTypes.func.isRequired,
+  onPriceRangeClick: PropTypes.func.isRequired
 };
 
 export default Filter;

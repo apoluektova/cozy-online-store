@@ -22,19 +22,19 @@ const Header = () => {
         </ul>
       </nav>
       <ul className="user-list">
-          <li className="user-list__item">
-            <img className="user-list__icon" src="img/svg/heart.svg" width="24" height="24" alt="Favorites" />
-          </li>
-          <li className="user-list__item">
-            <img className="user-list__icon" src="img/svg/user.svg" width="24" height="24" alt="Login" />
-          </li>
-          <li className="user-list__item">
-            <Link to={APP_ROUTE.CART} className="user-list__link">
-              <img className="user-list__icon" src="img/svg/cart.svg" width="24" height="24" alt="Cart" />
-              <span className="user-list__number visually-hidden">1</span>
-            </Link>
-          </li>
-        </ul>
+        <li className="user-list__item">
+          <img className="user-list__icon" src="img/svg/heart.svg" width="24" height="24" alt="Favorites" />
+        </li>
+        <li className="user-list__item">
+          <img className="user-list__icon" src="img/svg/user.svg" width="24" height="24" alt="Login" />
+        </li>
+        <li className="user-list__item">
+          <Link to={APP_ROUTE.CART} className="user-list__link">
+            <img className="user-list__icon" src="img/svg/cart.svg" width="24" height="24" alt="Cart" />
+            <span className="user-list__number visually-hidden">1</span>
+          </Link>
+        </li>
+      </ul>
     </header>
   );
 };

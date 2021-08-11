@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Header from "../header/header.jsx";
 import OrderSummary from "../order-summary/order-summary.jsx";
 import {connect} from "react-redux";
@@ -19,8 +20,9 @@ const Cart = (props) => {
           </div>
           <ul className="cart__list">
             {products.map((product) => {
+
               return (
-                <li className="cart__item">
+                <li className="cart__item" key={product.id}>
                   <img className="cart__image" src={product.image} alt={product.title} />
                   <div className="cart__info">
                     <h3 className="cart__product">{product.title}</h3>
@@ -31,12 +33,12 @@ const Cart = (props) => {
                         <button className="cart__button cart__button--plus" type="button">+</button>
                       </div>
                       <button
-                      className="cart__remove"
-                      type="button"
-                      onClick={(evt) => {
-                        evt.preventDefault();
-                        onRemoveButtonClick(product);
-                      }}
+                        className="cart__remove"
+                        type="button"
+                        onClick={(evt) => {
+                          evt.preventDefault();
+                          onRemoveButtonClick(product);
+                        }}
                       >Remove</button>
                     </div>
                   </div>
@@ -61,6 +63,11 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.removeFromCart(product));
   }
 });
+
+Cart.propTypes = {
+  products: PropTypes.array.isRequired,
+  onRemoveButtonClick: PropTypes.func.isRequired,
+};
 
 export {Cart};
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -9,4 +9,4 @@ export const APP_ROUTE = {
   MAIN: `/`,
   CART: `/cart`,
   ORDER: `/order`
-}
+};
