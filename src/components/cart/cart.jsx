@@ -7,7 +7,17 @@ import {selectProductsInCart} from "../../reducer/app/selectors.js";
 import {ActionCreator} from "../../reducer/app/app.js";
 
 const Cart = (props) => {
-  const {products, onRemoveButtonClick} = props;
+  const {products, onRemoveButtonClick, onMinusButtonClick, onPlusButtonClick} = props;
+
+  const productsCount = products.reduce((acc, product) => {
+    if (!acc.hasOwnProperty(product.id)) {
+      acc[product.id] = 0;
+    }
+    acc[product.id] = acc[product.id] + 1;
+    return acc;
+  }, {});
+
+  const productsToRender = [...new Set(products)];
 
   return (
     <React.Fragment>
@@ -19,7 +29,8 @@ const Cart = (props) => {
             <span className="cart__number">{products.length} items</span>
           </div>
           <ul className="cart__list">
-            {products.map((product) => {
+            {productsToRender.map((product) => {
+              const cartAmount = productsCount[product.id];
 
               return (
                 <li className="cart__item" key={product.id}>
@@ -28,9 +39,27 @@ const Cart = (props) => {
                     <h3 className="cart__product">{product.title}</h3>
                     <div className="cart__buttons-wrapper">
                       <div className="cart__purchase-buttons">
-                        <button className="cart__button cart__button--minus" type="button">&#8211;</button>
-                        <span className="cart__amount">1</span>
-                        <button className="cart__button cart__button--plus" type="button">+</button>
+                        <button
+                          className="cart__button cart__button--minus"
+                          type="button"
+                          onClick={(evt) => {
+                            evt.preventDefault();
+                            onMinusButtonClick(product);
+                          }}
+                        >
+                          &#8211;
+                        </button>
+                        <span className="cart__amount">{cartAmount}</span>
+                        <button
+                          className="cart__button cart__button--plus"
+                          type="button"
+                          onClick={(evt) => {
+                            evt.preventDefault();
+                            onPlusButtonClick(product);
+                          }}
+                        >
+                          +
+                        </button>
                       </div>
                       <button
                         className="cart__remove"
@@ -61,12 +90,20 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onRemoveButtonClick(product) {
     dispatch(ActionCreator.removeFromCart(product));
+  },
+  onMinusButtonClick(product) {
+    dispatch(ActionCreator.removeFromCart(product));
+  },
+  onPlusButtonClick(product) {
+    dispatch(ActionCreator.addToCart(product));
   }
 });
 
 Cart.propTypes = {
   products: PropTypes.array.isRequired,
   onRemoveButtonClick: PropTypes.func.isRequired,
+  onMinusButtonClick: PropTypes.func.isRequired,
+  onPlusButtonClick: PropTypes.func.isRequired
 };
 
 export {Cart};
