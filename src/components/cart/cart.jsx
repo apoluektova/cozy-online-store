@@ -8,16 +8,10 @@ import {ActionCreator} from "../../reducer/app/app.js";
 
 const Cart = (props) => {
   const {products, productQuantity, onRemoveButtonClick, onMinusButtonClick, onPlusButtonClick} = props;
-
-  // const productsCount = products.reduce((acc, product) => {
-  //   if (!acc.hasOwnProperty(product.id)) {
-  //     acc[product.id] = 0;
-  //   }
-  //   acc[product.id] = acc[product.id] + 1;
-  //   return acc;
-  // }, {});
-
-  // const productsToRender = [...new Set(products)];
+  const totalProductsAmount = Object.values(productQuantity).reduce((acc, value) => {
+    acc = acc + value;
+    return acc;
+  }, 0);
 
   return (
     <React.Fragment>
@@ -26,7 +20,7 @@ const Cart = (props) => {
         <section className="cart">
           <div className="cart__title-wrapper">
             <h2 className="cart__title">Cart</h2>
-            <span className="cart__number">{products.length} items</span>
+            <span className="cart__number">{totalProductsAmount} items</span>
           </div>
           <ul className="cart__list">
             {products.map((product) => {

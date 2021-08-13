@@ -68,20 +68,20 @@ const reducer = (state = initialState, action) => {
       if (state.productsInCart.find((product) => product.id === action.payload.id)) {
         return {
           ...state,
-          productQuantity: {...state.productQuantity, [action.payload.id]: (state.productQuantity || 0) + 1}
+          productQuantity: {...state.productQuantity, [action.payload.id]: (state.productQuantity[action.payload.id] || 0) + 1}
         };
       } else {
         return {
           ...state,
           productsInCart: state.productsInCart.concat(action.payload),
-          productQuantity: {...state.productQuantity, [action.payload.id]: (state.productQuantity || 0) + 1}
+          productQuantity: {...state.productQuantity, [action.payload.id]: (state.productQuantity[action.payload.id] || 0) + 1}
         };
       }
     case (ActionType.REMOVE_FROM_CART):
       if (state.productQuantity[action.payload.id] > 0) {
         return {
           ...state,
-          productQuantity: {...state.productQuantity, [action.payload.id]: (state.productQuantity - 1)}
+          productQuantity: {...state.productQuantity, [action.payload.id]: (state.productQuantity[action.payload.id] - 1)}
         };
       } else {
         return {
