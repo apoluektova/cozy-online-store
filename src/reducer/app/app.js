@@ -11,7 +11,8 @@ const ActionType = {
   CHANGE_PRICE_RANGE: `CHANGE_PRICE_RANGE`,
   CHANGE_SORTING_TYPE: `CHANGE_SORTING_TYPE`,
   ADD_TO_CART: `ADD_TO_CART`,
-  REMOVE_FROM_CART: `REMOVE_FROM_CART`
+  REMOVE_FROM_CART: `REMOVE_FROM_CART`,
+  REMOVE_ONE_ITEM: `REMOVE_ONE_ITEM`
 };
 
 const ActionCreator = {
@@ -42,6 +43,12 @@ const ActionCreator = {
   removeFromCart: (product) => {
     return {
       type: ActionType.REMOVE_FROM_CART,
+      payload: product
+    };
+  },
+  removeOneItem: (product) => {
+    return {
+      type: ActionType.REMOVE_ONE_ITEM,
       payload: product
     };
   }
@@ -78,6 +85,12 @@ const reducer = (state = initialState, action) => {
         };
       }
     case (ActionType.REMOVE_FROM_CART):
+      return {
+        ...state,
+        productsInCart: state.productsInCart.slice().filter((product) => product.id !== action.payload.id),
+        productQuantity: {...state.productQuantity, [action.payload.id]: (state.productQuantity[action.payload.id] - state.productQuantity[action.payload.id])}
+      };
+    case (ActionType.REMOVE_ONE_ITEM):
       if (state.productQuantity[action.payload.id] > 0) {
         return {
           ...state,

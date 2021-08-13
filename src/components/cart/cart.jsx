@@ -90,7 +90,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.removeFromCart(product));
   },
   onMinusButtonClick(product) {
-    dispatch(ActionCreator.removeFromCart(product));
+    dispatch(ActionCreator.removeOneItem(product));
   },
   onPlusButtonClick(product) {
     dispatch(ActionCreator.addToCart(product));

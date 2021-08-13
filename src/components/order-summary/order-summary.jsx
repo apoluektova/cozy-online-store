@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 
 const OrderSummary = (props) => {
   const {orderPrice} = props;
-  const orderPriceFixed = orderPrice.toFixed(1);
+  const orderPriceFixed = orderPrice.toFixed(2);
+  const discount = ((orderPrice * 10) / 100).toFixed(2);
+  const totalPrice = (orderPrice + ((orderPrice * 10) / 100)).toFixed(2);
 
   return (
     <section className="order-summary">
@@ -16,7 +18,7 @@ const OrderSummary = (props) => {
           </tr>
           <tr className="table__row">
             <td className="table__info">Discount</td>
-            <td className="table__info">$31.9</td>
+            <td className="table__info">${discount}</td>
           </tr>
           <tr className="table__row">
             <td className="table__info">Shipping</td>
@@ -27,7 +29,7 @@ const OrderSummary = (props) => {
       <div className="order-summary__total">
         <div className="order-summary__total-wrapper">
           <span className="order-summary__total-text">Total</span>
-          <span className="order-summary__total-text">$300</span>
+          <span className="order-summary__total-text">${totalPrice}</span>
         </div>
         <span className="order-summary__delivery">Estimated Delivery by <b>01 Feb 2021</b></span>
       </div>
