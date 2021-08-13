@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import Header from "../header/header.jsx";
 import OrderSummary from "../order-summary/order-summary.jsx";
 import {connect} from "react-redux";
-import {selectProductQuantity, selectProductsInCart} from "../../reducer/app/selectors.js";
+import {selectProductQuantity, selectProductsInCart, selectOrderPrice} from "../../reducer/app/selectors.js";
 import {ActionCreator} from "../../reducer/app/app.js";
 
 const Cart = (props) => {
-  const {products, productQuantity, onRemoveButtonClick, onMinusButtonClick, onPlusButtonClick} = props;
+  const {products, productQuantity, onRemoveButtonClick, onMinusButtonClick, onPlusButtonClick, orderPrice} = props;
   const totalProductsAmount = Object.values(productQuantity).reduce((acc, value) => {
     acc = acc + value;
     return acc;
@@ -71,7 +71,9 @@ const Cart = (props) => {
             })}
           </ul>
         </section>
-        <OrderSummary />
+        <OrderSummary
+          orderPrice={orderPrice}
+        />
       </div>
     </React.Fragment>
   );
@@ -79,7 +81,8 @@ const Cart = (props) => {
 
 const mapStateToProps = (state) => ({
   products: selectProductsInCart(state),
-  productQuantity: selectProductQuantity(state)
+  productQuantity: selectProductQuantity(state),
+  orderPrice: selectOrderPrice(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -100,6 +103,7 @@ Cart.propTypes = {
   onRemoveButtonClick: PropTypes.func.isRequired,
   onMinusButtonClick: PropTypes.func.isRequired,
   onPlusButtonClick: PropTypes.func.isRequired,
+  orderPrice: PropTypes.number.isRequired
 };
 
 export {Cart};
