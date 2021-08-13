@@ -29,9 +29,7 @@ export const selectProductsBySortingType = createSelector(
     selectProductsByPrice,
     selectSortingType,
     (products, sortingType) => {
-      if (sortingType === null) {
-        return products;
-      } else if (sortingType === SORTING_TYPES.PRICE_LOW_HIGH) {
+      if (sortingType === SORTING_TYPES.PRICE_LOW_HIGH) {
         return products.slice().sort((a, b) => {
           return a.price - b.price;
         });
@@ -55,6 +53,8 @@ export const selectProductsBySortingType = createSelector(
             return 0;
           }
         });
+      } else {
+        return products;
       }
     }
 );

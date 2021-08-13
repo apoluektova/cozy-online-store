@@ -11,3 +11,7 @@ export const selectSortingType = (state) => {
 export const selectProductsInCart = (state) => {
   return state[NameSpace.APP].productsInCart;
 };
+
+export const selectProductQuantity = (state) => {
+  return state[NameSpace.APP].productQuantity;
+};

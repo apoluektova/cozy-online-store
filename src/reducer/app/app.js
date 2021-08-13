@@ -3,6 +3,7 @@ const initialState = {
   priceRange: {},
   sortingType: null,
   productsInCart: [],
+  productQuantity: {}
 };
 
 const ActionType = {
@@ -64,18 +65,35 @@ const reducer = (state = initialState, action) => {
         sortingType: action.payload
       };
     case (ActionType.ADD_TO_CART):
-      return {
-        ...state,
-        productsInCart: state.productsInCart.concat(action.payload)
-      };
+      if (state.productsInCart.find((product) => product.id === action.payload.id)) {
+        return {
+          ...state,
+          productQuantity: {...state.productQuantity, [action.payload.id]: (state.productQuantity || 0) + 1}
+        };
+      } else {
+        return {
+          ...state,
+          productsInCart: state.productsInCart.concat(action.payload),
+          productQuantity: {...state.productQuantity, [action.payload.id]: (state.productQuantity || 0) + 1}
+        };
+      }
     case (ActionType.REMOVE_FROM_CART):
-      return {
-        ...state,
-        productsInCart: state.productsInCart.slice().filter((product) => product.id !== action.payload.id)
-      };
+      if (state.productQuantity[action.payload.id] > 0) {
+        return {
+          ...state,
+          productQuantity: {...state.productQuantity, [action.payload.id]: (state.productQuantity - 1)}
+        };
+      } else {
+        return {
+          ...state,
+          productsInCart: state.productsInCart.slice().filter((product) => product.id !== action.payload.id)
+        };
+      }
   }
 
   return state;
 };
 
 export {reducer, ActionCreator, ActionType, initialState};
+
+

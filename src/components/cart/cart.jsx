@@ -3,21 +3,21 @@ import PropTypes from "prop-types";
 import Header from "../header/header.jsx";
 import OrderSummary from "../order-summary/order-summary.jsx";
 import {connect} from "react-redux";
-import {selectProductsInCart} from "../../reducer/app/selectors.js";
+import {selectProductQuantity, selectProductsInCart} from "../../reducer/app/selectors.js";
 import {ActionCreator} from "../../reducer/app/app.js";
 
 const Cart = (props) => {
-  const {products, onRemoveButtonClick, onMinusButtonClick, onPlusButtonClick} = props;
+  const {products, productQuantity, onRemoveButtonClick, onMinusButtonClick, onPlusButtonClick} = props;
 
-  const productsCount = products.reduce((acc, product) => {
-    if (!acc.hasOwnProperty(product.id)) {
-      acc[product.id] = 0;
-    }
-    acc[product.id] = acc[product.id] + 1;
-    return acc;
-  }, {});
+  // const productsCount = products.reduce((acc, product) => {
+  //   if (!acc.hasOwnProperty(product.id)) {
+  //     acc[product.id] = 0;
+  //   }
+  //   acc[product.id] = acc[product.id] + 1;
+  //   return acc;
+  // }, {});
 
-  const productsToRender = [...new Set(products)];
+  // const productsToRender = [...new Set(products)];
 
   return (
     <React.Fragment>
@@ -29,8 +29,8 @@ const Cart = (props) => {
             <span className="cart__number">{products.length} items</span>
           </div>
           <ul className="cart__list">
-            {productsToRender.map((product) => {
-              const cartAmount = productsCount[product.id];
+            {products.map((product) => {
+              const cartAmount = productQuantity[product.id];
 
               return (
                 <li className="cart__item" key={product.id}>
@@ -84,7 +84,8 @@ const Cart = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  products: selectProductsInCart(state)
+  products: selectProductsInCart(state),
+  productQuantity: selectProductQuantity(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -101,10 +102,12 @@ const mapDispatchToProps = (dispatch) => ({
 
 Cart.propTypes = {
   products: PropTypes.array.isRequired,
+  productQuantity: PropTypes.object.isRequired,
   onRemoveButtonClick: PropTypes.func.isRequired,
   onMinusButtonClick: PropTypes.func.isRequired,
-  onPlusButtonClick: PropTypes.func.isRequired
+  onPlusButtonClick: PropTypes.func.isRequired,
 };
 
 export {Cart};
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+
