@@ -1,0 +1,36 @@
+.form__item {
+  margin-bottom: 24px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.form__label {
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 600;
+  color: rgba($dark, 0.6);
+  text-align: left;
+  margin-bottom: 10px;
+  display: block;
+
+  &::after {
+    content: "*";
+    color: $red;
+    margin-left: 5px;
+  }
+}
+
+.form__input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid $dark;
+  outline: none;
+  border-radius: 2px;
+
+  &:focus,
+  &:active {
+    border: 2px solid $green;
+  }
+}

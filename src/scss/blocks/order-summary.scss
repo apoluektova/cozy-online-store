@@ -40,12 +40,6 @@
 
 .order-summary__button {
   @include reset-button;
-  background-color: $green;
-  color: $white;
-  text-transform: uppercase;
+  @include green-button;
   width: 100%;
-  padding: 19px;
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 700;
 }

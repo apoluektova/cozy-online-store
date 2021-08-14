@@ -1,0 +1,17 @@
+.customer {
+  width: 57%;
+}
+
+.customer__breadcrumbs {
+  margin-bottom: 72px;
+}
+
+.customer__form {
+  margin-bottom: 44px;
+}
+
+.customer__button {
+  @include reset-button;
+  @include green-button;
+  display: block;
+}

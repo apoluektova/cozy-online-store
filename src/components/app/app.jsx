@@ -8,6 +8,7 @@ import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {APP_ROUTE} from "../../const.js";
 import Cart from "../cart/cart.jsx";
+import Customer from "../customer/customer.jsx";
 
 const App = (props) => {
   const {
@@ -44,6 +45,15 @@ const App = (props) => {
           render={() => {
             return (
               <Cart />
+            );
+          }}
+        />
+        <Route
+          exact
+          path={APP_ROUTE.ORDER}
+          render={() => {
+            return (
+              <Customer />
             );
           }}
         />
