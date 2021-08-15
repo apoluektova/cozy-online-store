@@ -1,8 +1,19 @@
 .form__item {
   margin-bottom: 24px;
+  width: 100%;
 
-  &:last-of-type {
+  &--small {
+    width: 50%;
+    margin-right: 30px;
     margin-bottom: 0;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+
+  &--payment {
+    margin-bottom: 24px;
   }
 }
 
@@ -33,4 +44,9 @@
   &:active {
     border: 2px solid $green;
   }
+}
+
+.form__wrapper {
+  width: 100%;
+  display: flex;
 }

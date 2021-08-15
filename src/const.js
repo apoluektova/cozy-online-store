@@ -8,5 +8,6 @@ export const SORTING_TYPES = {
 export const APP_ROUTE = {
   MAIN: `/`,
   CART: `/cart`,
-  ORDER: `/order`
+  ORDER: `/order`,
+  PAYMENT: `/payment`
 };

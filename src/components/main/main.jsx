@@ -19,19 +19,21 @@ const Main = (props) => {
     <React.Fragment>
       <Header />
       <main className="page-content">
-        <Filter
-          categories={categories}
-          onCategoryClick={onCategoryClick}
-          onPriceRangeClick={onPriceRangeClick}
-        />
         <div className="page-content__wrapper">
-          <Sorting
-            onSortingButtonClick={onSortingButtonClick}
+          <Filter
+            categories={categories}
+            onCategoryClick={onCategoryClick}
+            onPriceRangeClick={onPriceRangeClick}
           />
-          <Catalog
-            products={products}
-            onCartButtonClick={onCartButtonClick}
-          />
+          <div className="page-content__wrapper-main">
+            <Sorting
+              onSortingButtonClick={onSortingButtonClick}
+            />
+            <Catalog
+              products={products}
+              onCartButtonClick={onCartButtonClick}
+            />
+          </div>
         </div>
       </main>
     </React.Fragment>

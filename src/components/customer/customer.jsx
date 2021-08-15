@@ -1,5 +1,7 @@
 import React from "react";
 import Header from "../header/header.jsx";
+import {Link} from "react-router-dom";
+import {APP_ROUTE} from "../../const.js";
 
 const Customer = () => {
   return (
@@ -29,17 +31,19 @@ const Customer = () => {
               <input className="form__input" type="text" name="last-name" id="last-name" required/>
             </div>
             <div className="form__wrapper">
-              <div className="form__item">
+              <div className="form__item form__item--small">
                 <label className="form__label" htmlFor="phone">Phone Number</label>
-                <input className="form__input" type="text" name="phone" id="phone" required/>
+                <input className="form__input" type="tel" name="phone" id="phone" pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}" required/>
               </div>
-              <div className="form__item">
+              <div className="form__item form__item--small">
                 <label className="form__label" htmlFor="email">E-mail</label>
-                <input className="form__input" type="text" name="email" id="email" required/>
+                <input className="form__input" type="email" name="email" id="email" required/>
               </div>
             </div>
           </form>
-          <button className="customer__button" type="button">Continue to payment </button>
+          <Link to={APP_ROUTE.PAYMENT}>
+            <button className="customer__button" type="button">Continue to payment </button>
+          </Link>
         </section>
       </div>
     </React.Fragment>

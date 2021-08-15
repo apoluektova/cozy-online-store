@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {APP_ROUTE} from "../../const.js";
 import Cart from "../cart/cart.jsx";
 import Customer from "../customer/customer.jsx";
+import Payment from "../payment/payment.jsx";
 
 const App = (props) => {
   const {
@@ -54,6 +55,15 @@ const App = (props) => {
           render={() => {
             return (
               <Customer />
+            );
+          }}
+        />
+        <Route
+          exact
+          path={APP_ROUTE.PAYMENT}
+          render={() => {
+            return (
+              <Payment />
             );
           }}
         />

@@ -17,63 +17,65 @@ const Cart = (props) => {
     <React.Fragment>
       <Header />
       <div className="page-content">
-        <section className="cart">
-          <div className="cart__title-wrapper">
-            <h2 className="cart__title">Cart</h2>
-            <span className="cart__number">{totalProductsAmount} items</span>
-          </div>
-          <ul className="cart__list">
-            {products.map((product) => {
-              const cartAmount = productQuantity[product.id];
+        <div className="page-content__wrapper">
+          <section className="cart">
+            <div className="cart__title-wrapper">
+              <h2 className="cart__title">Cart</h2>
+              <span className="cart__number">{totalProductsAmount} items</span>
+            </div>
+            <ul className="cart__list">
+              {products.map((product) => {
+                const cartAmount = productQuantity[product.id];
 
-              return (
-                <li className="cart__item" key={product.id}>
-                  <img className="cart__image" src={product.image} alt={product.title} />
-                  <div className="cart__info">
-                    <h3 className="cart__product">{product.title}</h3>
-                    <div className="cart__buttons-wrapper">
-                      <div className="cart__purchase-buttons">
-                        <button
-                          className="cart__button cart__button--minus"
-                          type="button"
-                          onClick={(evt) => {
-                            evt.preventDefault();
-                            onMinusButtonClick(product);
-                          }}
-                        >
+                return (
+                  <li className="cart__item" key={product.id}>
+                    <img className="cart__image" src={product.image} alt={product.title} />
+                    <div className="cart__info">
+                      <h3 className="cart__product">{product.title}</h3>
+                      <div className="cart__buttons-wrapper">
+                        <div className="cart__purchase-buttons">
+                          <button
+                            className="cart__button cart__button--minus"
+                            type="button"
+                            onClick={(evt) => {
+                              evt.preventDefault();
+                              onMinusButtonClick(product);
+                            }}
+                          >
                           &#8211;
-                        </button>
-                        <span className="cart__amount">{cartAmount}</span>
+                          </button>
+                          <span className="cart__amount">{cartAmount}</span>
+                          <button
+                            className="cart__button cart__button--plus"
+                            type="button"
+                            onClick={(evt) => {
+                              evt.preventDefault();
+                              onPlusButtonClick(product);
+                            }}
+                          >
+                          +
+                          </button>
+                        </div>
                         <button
-                          className="cart__button cart__button--plus"
+                          className="cart__remove"
                           type="button"
                           onClick={(evt) => {
                             evt.preventDefault();
-                            onPlusButtonClick(product);
+                            onRemoveButtonClick(product);
                           }}
-                        >
-                          +
-                        </button>
+                        >Remove</button>
                       </div>
-                      <button
-                        className="cart__remove"
-                        type="button"
-                        onClick={(evt) => {
-                          evt.preventDefault();
-                          onRemoveButtonClick(product);
-                        }}
-                      >Remove</button>
                     </div>
-                  </div>
-                  <span className="cart__price">${product.price}</span>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-        <OrderSummary
-          orderPrice={orderPrice}
-        />
+                    <span className="cart__price">${product.price}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+          <OrderSummary
+            orderPrice={orderPrice}
+          />
+        </div>
       </div>
     </React.Fragment>
   );
