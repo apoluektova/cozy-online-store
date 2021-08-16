@@ -10,6 +10,7 @@ import {APP_ROUTE} from "../../const.js";
 import Cart from "../cart/cart.jsx";
 import Customer from "../customer/customer.jsx";
 import Payment from "../payment/payment.jsx";
+import Address from "../address/address.jsx";
 
 const App = (props) => {
   const {
@@ -64,6 +65,15 @@ const App = (props) => {
           render={() => {
             return (
               <Payment />
+            );
+          }}
+        />
+        <Route
+          exact
+          path={APP_ROUTE.ADDRESS}
+          render={() => {
+            return (
+              <Address />
             );
           }}
         />

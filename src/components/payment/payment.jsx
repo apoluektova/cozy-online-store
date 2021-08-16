@@ -1,6 +1,8 @@
 import React from "react";
 import Header from "../header/header.jsx";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs.jsx";
+import {Link} from "react-router-dom";
+import {APP_ROUTE} from "../../const.js";
 
 const Payment = () => {
   return (
@@ -56,6 +58,9 @@ const Payment = () => {
             </div>
           </div>
         </div>
+        <Link to={APP_ROUTE.ADDRESS}>
+          <button className="customer__button" type="button">Continue to address </button>
+        </Link>
       </div>
     </React.Fragment>
   );
