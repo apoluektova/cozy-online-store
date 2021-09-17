@@ -3,7 +3,8 @@ const initialState = {
   priceRange: {},
   sortingType: null,
   productsInCart: [],
-  productQuantity: {}
+  productQuantity: {},
+  placemarkCoordinates: [],
 };
 
 const ActionType = {
@@ -12,7 +13,8 @@ const ActionType = {
   CHANGE_SORTING_TYPE: `CHANGE_SORTING_TYPE`,
   ADD_TO_CART: `ADD_TO_CART`,
   REMOVE_FROM_CART: `REMOVE_FROM_CART`,
-  REMOVE_ONE_ITEM: `REMOVE_ONE_ITEM`
+  REMOVE_ONE_ITEM: `REMOVE_ONE_ITEM`,
+  GET_PLACEMARK_COORDINATES: `GET_PLACEMARK_COORDINATES`
 };
 
 const ActionCreator = {
@@ -50,6 +52,12 @@ const ActionCreator = {
     return {
       type: ActionType.REMOVE_ONE_ITEM,
       payload: product
+    };
+  },
+  getPlacemarkCoordinates: (coordinates) => {
+    return {
+      type: ActionType.GET_PLACEMARK_COORDINATES,
+      payload: coordinates
     };
   }
 };
@@ -102,6 +110,11 @@ const reducer = (state = initialState, action) => {
           productsInCart: state.productsInCart.slice().filter((product) => product.id !== action.payload.id)
         };
       }
+    case (ActionType.GET_PLACEMARK_COORDINATES):
+      return {
+        ...state,
+        placemarkCoordinates: action.payload,
+      };
   }
 
   return state;

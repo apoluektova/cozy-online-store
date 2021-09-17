@@ -84,27 +84,27 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload
-      }
+      };
     case ActionType.LOAD_SOME_PRODUCTS:
       return {
         ...state,
         products: action.payload
-      }
+      };
     case ActionType.LOAD_PRODUCT:
       return {
         ...state,
         product: action.payload
-      }
+      };
     case ActionType.LOAD_CATEGORIES:
       return {
         ...state,
         categories: action.payload,
-      }
-     case ActionType.LOAD_PRODUCTS_BY_CATEGORY:
-       return {
-         ...state,
-         products: action.payload,
-       }
+      };
+    case ActionType.LOAD_PRODUCTS_BY_CATEGORY:
+      return {
+        ...state,
+        products: action.payload,
+      };
   }
 
   return state;

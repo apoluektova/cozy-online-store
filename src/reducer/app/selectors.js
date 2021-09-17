@@ -28,3 +28,8 @@ export const selectOrderPrice = createSelector(
       return total;
     }
 );
+
+export const selectPlacemarkCoordinates = (state) => {
+  return state[NameSpace.APP].placemarkCoordinates;
+};
+

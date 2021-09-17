@@ -11,6 +11,8 @@ import Cart from "../cart/cart.jsx";
 import Customer from "../customer/customer.jsx";
 import Payment from "../payment/payment.jsx";
 import Address from "../address/address.jsx";
+import {YMaps} from "react-yandex-maps";
+import {selectPlacemarkCoordinates} from "../../reducer/app/selectors.js";
 
 const App = (props) => {
   const {
@@ -19,72 +21,81 @@ const App = (props) => {
     onCategoryClick,
     onPriceRangeClick,
     onSortingButtonClick,
-    onCartButtonClick
+    onCartButtonClick,
+    onMapClick,
+    placemarkCoordinates
   } = props;
 
   return (
-    <Router>
-      <Switch>
-        <Route
-          exact
-          path={APP_ROUTE.MAIN}
-          render={() => {
-            return (
-              <Main
-                products={products}
-                categories={categories}
-                onCategoryClick={onCategoryClick}
-                onPriceRangeClick={onPriceRangeClick}
-                onSortingButtonClick={onSortingButtonClick}
-                onCartButtonClick={onCartButtonClick}
-              />
-            );
-          }}
-        />
-        <Route
-          exact
-          path={APP_ROUTE.CART}
-          render={() => {
-            return (
-              <Cart />
-            );
-          }}
-        />
-        <Route
-          exact
-          path={APP_ROUTE.ORDER}
-          render={() => {
-            return (
-              <Customer />
-            );
-          }}
-        />
-        <Route
-          exact
-          path={APP_ROUTE.PAYMENT}
-          render={() => {
-            return (
-              <Payment />
-            );
-          }}
-        />
-        <Route
-          exact
-          path={APP_ROUTE.ADDRESS}
-          render={() => {
-            return (
-              <Address />
-            );
-          }}
-        />
-      </Switch>
-    </Router>
+    <YMaps>
+      <Router>
+        <Switch>
+          <Route
+            exact
+            path={APP_ROUTE.MAIN}
+            render={() => {
+              return (
+                <Main
+                  products={products}
+                  categories={categories}
+                  onCategoryClick={onCategoryClick}
+                  onPriceRangeClick={onPriceRangeClick}
+                  onSortingButtonClick={onSortingButtonClick}
+                  onCartButtonClick={onCartButtonClick}
+                />
+              );
+            }}
+          />
+          <Route
+            exact
+            path={APP_ROUTE.CART}
+            render={() => {
+              return (
+                <Cart />
+              );
+            }}
+          />
+          <Route
+            exact
+            path={APP_ROUTE.ORDER}
+            render={() => {
+              return (
+                <Customer />
+              );
+            }}
+          />
+          <Route
+            exact
+            path={APP_ROUTE.PAYMENT}
+            render={() => {
+              return (
+                <Payment />
+              );
+            }}
+          />
+          <Route
+            exact
+            path={APP_ROUTE.ADDRESS}
+            render={() => {
+              return (
+                <Address
+                  onMapClick={onMapClick}
+                  placemarkCoordinates={placemarkCoordinates}
+                />
+              );
+            }}
+          />
+        </Switch>
+      </Router>
+    </YMaps>
+
   );
 };
 
 const mapStateToProps = (state) => ({
   products: selectProductsBySortingType(state),
   categories: selectCategories(state),
+  placemarkCoordinates: selectPlacemarkCoordinates(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -101,6 +112,9 @@ const mapDispatchToProps = (dispatch) => ({
   onCartButtonClick(product) {
     dispatch(ActionCreator.addToCart(product));
   },
+  onMapClick(coordinates) {
+    dispatch(ActionCreator.getPlacemarkCoordinates(coordinates));
+  }
 });
 
 App.propTypes = {
@@ -109,7 +123,9 @@ App.propTypes = {
   onCategoryClick: PropTypes.func.isRequired,
   onPriceRangeClick: PropTypes.func.isRequired,
   onSortingButtonClick: PropTypes.func.isRequired,
-  onCartButtonClick: PropTypes.func.isRequired
+  onCartButtonClick: PropTypes.func.isRequired,
+  onMapClick: PropTypes.func.isRequired,
+  placemarkCoordinates: PropTypes.array.isRequired
 };
 
 export {App};
